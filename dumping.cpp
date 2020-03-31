@@ -607,6 +607,11 @@ std::string string_of_imports(const IMAGE_IMPORT_DESCRIPTOR *imports, const Impo
     std::string ret;
 
     ret += "## Imports ##\n";
+    if (!imports || table.empty())
+    {
+        ret += "No imports.\n\n";
+        return ret;
+    }
 
     ret += string_formatted("  Characteristics: 0x%08X (%u)\n", imports->Characteristics, imports->Characteristics);
     ret += string_formatted("  TimeDateStamp: 0x%08X (%s)\n", imports->TimeDateStamp, string_of_timestamp(imports->TimeDateStamp).c_str());
@@ -683,6 +688,11 @@ std::string string_of_exports(const IMAGE_EXPORT_DIRECTORY *exports, const Expor
     std::string ret;
 
     ret += "## Exports ##\n";
+    if (!exports || table.empty())
+    {
+        ret += "No exports.\n\n";
+        return ret;
+    }
 
     ret += string_formatted("  Characteristics: 0x%08X (%u)\n", exports->Characteristics, exports->Characteristics);
     ret += string_formatted("  TimeDateStamp: 0x%08X (%s)\n", exports->TimeDateStamp, string_of_timestamp(exports->TimeDateStamp).c_str());
@@ -751,6 +761,12 @@ std::string string_of_delay(const DelayTable& table, bool is_64bit)
     std::string ret;
 
     ret += "## Delay ##\n";
+    if (table.empty())
+    {
+        ret += "No delays.\n\n";
+        return ret;
+    }
+
     if (is_64bit)
         ret += string_formatted("  %14s %8s %8s %16s %s\n", "Module", "HMODULE", "hint", "RVA", "Function");
     else

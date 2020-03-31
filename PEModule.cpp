@@ -880,38 +880,20 @@ std::string PEModule::dump(const std::string& name) const
     if (name == "imports")
     {
         ImportTable table;
-        if (load_import_table(table))
-        {
-            return string_of_imports(get_imports(), table, is_64bit());
-        }
-        else
-        {
-            return "No imports.\n";
-        }
+        load_import_table(table);
+        return string_of_imports(get_imports(), table, is_64bit());
     }
     if (name == "exports")
     {
         ExportTable table;
-        if (load_export_table(table))
-        {
-            return string_of_exports(get_exports(), table, is_64bit());
-        }
-        else
-        {
-            return "No exports.\n";
-        }
+        load_export_table(table);
+        return string_of_exports(get_exports(), table, is_64bit());
     }
     if (name == "delay")
     {
         DelayTable table;
-        if (load_delay_table(table))
-        {
-            return string_of_delay(table, is_64bit());
-        }
-        else
-        {
-            return "No delays.\n";
-        }
+        load_delay_table(table);
+        return string_of_delay(table, is_64bit());
     }
 
     return Module::dump(name);
