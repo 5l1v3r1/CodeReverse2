@@ -1,0 +1,351 @@
+## IMAGE_DOS_HEADER ##
+  e_magic: 0x5A4D
+  e_cblp: 0x0090
+  e_cp: 0x0003
+  e_crlc: 0x0000
+  e_cparhdr: 0x0004
+  e_minalloc: 0x0000
+  e_maxalloc: 0xFFFF
+  e_ss: 0x0000
+  e_sp: 0x00B8
+  e_csum: 0x0000
+  e_ip: 0x0000
+  e_cs: 0x0000
+  e_lfarlc: 0x0040
+  e_ovno: 0x0000
+  e_res[0]: 0x0000
+  e_res[1]: 0x0000
+  e_res[2]: 0x0000
+  e_res[3]: 0x0000
+  e_oemid: 0x0000
+  e_oeminfo: 0x0000
+  e_res2[0]: 0x0000
+  e_res2[1]: 0x0000
+  e_res2[2]: 0x0000
+  e_res2[3]: 0x0000
+  e_res2[4]: 0x0000
+  e_res2[5]: 0x0000
+  e_res2[6]: 0x0000
+  e_res2[7]: 0x0000
+  e_res2[8]: 0x0000
+  e_res2[9]: 0x0000
+  e_lfanew: 0x00000080
+
+## IMAGE_FILE_HEADER ##
+  Machine: 0x014C (IMAGE_FILE_MACHINE_I386)
+  NumberOfSections: 0x0011 (17)
+  TimeDateStamp: 0x5E82F681 (Tue Mar 31 07:51:29 2020)
+  PointerToSymbolTable: 0x00033600
+  NumberOfSymbols: 0x000003D6 (982)
+  SizeOfOptionalHeader: 0x00E0 (224)
+  Characteristics: 0x2106 (IMAGE_FILE_EXECUTABLE_IMAGE IMAGE_FILE_LINE_NUMS_STRIPPED IMAGE_FILE_32BIT_MACHINE IMAGE_FILE_DLL )
+
+## IMAGE_OPTIONAL_HEADER32 ##
+  Magic: 0x010B
+  LinkerVersion: 2.34
+  SizeOfCode: 0x00001600 (5632)
+  SizeOfInitializedData: 0x00003600 (13824)
+  SizeOfUninitializedData: 0x00000400 (1024)
+  AddressOfEntryPoint: 0x000013B0
+  BaseOfCode: 0x00001000
+  BaseOfData: 0x00003000
+  ImageBase: 0x625C0000
+  SectionAlignment: 0x00001000
+  FileAlignment: 0x00000200
+  OperatingSystemVersion: 4.0
+  ImageVersion: 0.0
+  SubsystemVersion: 4.0
+  Win32VersionValue: 0x00000000
+  SizeOfImage: 0x00040000 (262144)
+  SizeOfHeaders: 0x00000600 (1536)
+  CheckSum: 0x000391E5
+  Subsystem: 0x0003 (IMAGE_SUBSYSTEM_WINDOWS_CUI)
+  DllCharacteristics: 0x0000 ()
+  SizeOfStackReserve: 0x00200000 (2097152)
+  SizeOfStackCommit: 0x00001000 (4096)
+  SizeOfHeapReserve: 0x00100000 (1048576)
+  SizeOfHeapCommit: 0x00001000 (4096)
+  LoaderFlags: 0x00000000
+  NumberOfRvaAndSizes: 0x00000010 (16)
+
+## Data Directories ##
+    IMAGE_DIRECTORY_ENTRY_EXPORT (0): VirtualAddress: 0x00007000, Size: 0x0000006B (107)
+    IMAGE_DIRECTORY_ENTRY_IMPORT (1): VirtualAddress: 0x00008000, Size: 0x00000450 (1104)
+    IMAGE_DIRECTORY_ENTRY_RESOURCE (2): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    IMAGE_DIRECTORY_ENTRY_EXCEPTION (3): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    IMAGE_DIRECTORY_ENTRY_SECURITY (4): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    IMAGE_DIRECTORY_ENTRY_BASERELOC (5): VirtualAddress: 0x0000B000, Size: 0x000001F8 (504)
+    IMAGE_DIRECTORY_ENTRY_DEBUG (6): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    IMAGE_DIRECTORY_ENTRY_ARCHITECTURE (7): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    IMAGE_DIRECTORY_ENTRY_GLOBALPTR (8): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    IMAGE_DIRECTORY_ENTRY_TLS (9): VirtualAddress: 0x00004050, Size: 0x00000018 (24)
+    IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG (10): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT (11): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    IMAGE_DIRECTORY_ENTRY_IAT (12): VirtualAddress: 0x000080D0, Size: 0x00000094 (148)
+    IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT (13): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR (14): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+    (Reserved Directory Entry) (15): VirtualAddress: 0x00000000, Size: 0x00000000 (0)
+
+## Section Header #0 ##
+  Name: .text
+  VirtualSize: 0x000014C4 (5316)
+  VirtualAddress: 0x00001000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00001600 (5632)
+  PointerToRawData: 0x00000600
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x60500060 (IMAGE_SCN_CNT_CODE IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_16BYTES IMAGE_SCN_MEM_EXECUTE IMAGE_SCN_MEM_READ )
+
+## Section Header #1 ##
+  Name: .data
+  VirtualSize: 0x00000030 (48)
+  VirtualAddress: 0x00003000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000200 (512)
+  PointerToRawData: 0x00001C00
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0xC0300040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_4BYTES IMAGE_SCN_MEM_READ IMAGE_SCN_MEM_WRITE )
+
+## Section Header #2 ##
+  Name: .rdata
+  VirtualSize: 0x000004D0 (1232)
+  VirtualAddress: 0x00004000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000600 (1536)
+  PointerToRawData: 0x00001E00
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x40300040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_4BYTES IMAGE_SCN_MEM_READ )
+
+## Section Header #3 ##
+  Name: /4
+  VirtualSize: 0x00000860 (2144)
+  VirtualAddress: 0x00005000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000A00 (2560)
+  PointerToRawData: 0x00002400
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x40300040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_4BYTES IMAGE_SCN_MEM_READ )
+
+## Section Header #4 ##
+  Name: .bss
+  VirtualSize: 0x000003D0 (976)
+  VirtualAddress: 0x00006000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000000 (0)
+  PointerToRawData: 0x00000000
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0xC0600080 (IMAGE_SCN_CNT_UNINITIALIZED_DATA IMAGE_SCN_ALIGN_32BYTES IMAGE_SCN_MEM_READ IMAGE_SCN_MEM_WRITE )
+
+## Section Header #5 ##
+  Name: .edata
+  VirtualSize: 0x0000006B (107)
+  VirtualAddress: 0x00007000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000200 (512)
+  PointerToRawData: 0x00002E00
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x40300040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_4BYTES IMAGE_SCN_MEM_READ )
+
+## Section Header #6 ##
+  Name: .idata
+  VirtualSize: 0x00000450 (1104)
+  VirtualAddress: 0x00008000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000600 (1536)
+  PointerToRawData: 0x00003000
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0xC0300040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_4BYTES IMAGE_SCN_MEM_READ IMAGE_SCN_MEM_WRITE )
+
+## Section Header #7 ##
+  Name: .CRT
+  VirtualSize: 0x0000002C (44)
+  VirtualAddress: 0x00009000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000200 (512)
+  PointerToRawData: 0x00003600
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0xC0300040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_4BYTES IMAGE_SCN_MEM_READ IMAGE_SCN_MEM_WRITE )
+
+## Section Header #8 ##
+  Name: .tls
+  VirtualSize: 0x00000008 (8)
+  VirtualAddress: 0x0000A000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000200 (512)
+  PointerToRawData: 0x00003800
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0xC0300040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_4BYTES IMAGE_SCN_MEM_READ IMAGE_SCN_MEM_WRITE )
+
+## Section Header #9 ##
+  Name: .reloc
+  VirtualSize: 0x000001F8 (504)
+  VirtualAddress: 0x0000B000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000200 (512)
+  PointerToRawData: 0x00003A00
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x42300040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_4BYTES IMAGE_SCN_MEM_DISCARDABLE IMAGE_SCN_MEM_READ )
+
+## Section Header #10 ##
+  Name: /14
+  VirtualSize: 0x000001D8 (472)
+  VirtualAddress: 0x0000C000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000200 (512)
+  PointerToRawData: 0x00003C00
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x42100040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_1BYTES IMAGE_SCN_MEM_DISCARDABLE IMAGE_SCN_MEM_READ )
+
+## Section Header #11 ##
+  Name: /29
+  VirtualSize: 0x0002965E (169566)
+  VirtualAddress: 0x0000D000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00029800 (169984)
+  PointerToRawData: 0x00003E00
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x42100040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_1BYTES IMAGE_SCN_MEM_DISCARDABLE IMAGE_SCN_MEM_READ )
+
+## Section Header #12 ##
+  Name: /41
+  VirtualSize: 0x00001B6B (7019)
+  VirtualAddress: 0x00037000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00001C00 (7168)
+  PointerToRawData: 0x0002D600
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x42100040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_1BYTES IMAGE_SCN_MEM_DISCARDABLE IMAGE_SCN_MEM_READ )
+
+## Section Header #13 ##
+  Name: /55
+  VirtualSize: 0x000026EC (9964)
+  VirtualAddress: 0x00039000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00002800 (10240)
+  PointerToRawData: 0x0002F200
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x42100040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_1BYTES IMAGE_SCN_MEM_DISCARDABLE IMAGE_SCN_MEM_READ )
+
+## Section Header #14 ##
+  Name: /67
+  VirtualSize: 0x00000281 (641)
+  VirtualAddress: 0x0003C000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000400 (1024)
+  PointerToRawData: 0x00031A00
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x42100040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_1BYTES IMAGE_SCN_MEM_DISCARDABLE IMAGE_SCN_MEM_READ )
+
+## Section Header #15 ##
+  Name: /78
+  VirtualSize: 0x0000125D (4701)
+  VirtualAddress: 0x0003D000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00001400 (5120)
+  PointerToRawData: 0x00031E00
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x42100040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_1BYTES IMAGE_SCN_MEM_DISCARDABLE IMAGE_SCN_MEM_READ )
+
+## Section Header #16 ##
+  Name: /89
+  VirtualSize: 0x00000258 (600)
+  VirtualAddress: 0x0003F000 (RVA, not a virtual address)
+  SizeOfRawData: 0x00000400 (1024)
+  PointerToRawData: 0x00033200
+  PointerToRelocations: 0x00000000
+  PointerToLinenumbers: 0x00000000
+  NumberOfRelocations: 0x00000000 (0)
+  NumberOfLinenumbers: 0x00000000 (0)
+  Characteristics: 0x42100040 (IMAGE_SCN_CNT_INITIALIZED_DATA IMAGE_SCN_ALIGN_1BYTES IMAGE_SCN_MEM_DISCARDABLE IMAGE_SCN_MEM_READ )
+
+## Imports ##
+  Characteristics: 0x0000803C (32828)
+  TimeDateStamp: 0x00000000 ((null))
+  Name: 0x00008400 (33792)
+  FirstThunk: 0x000080D0 (32976)
+          Module     hint      RVA Function
+    KERNEL32.dll      115 00008164 DeleteCriticalSection
+    KERNEL32.dll      136 0000817C EnterCriticalSection
+    KERNEL32.dll      1B1 00008194 FreeLibrary
+    KERNEL32.dll      21F 000081A2 GetCurrentProcess
+    KERNEL32.dll      220 000081B6 GetCurrentProcessId
+    KERNEL32.dll      224 000081CC GetCurrentThreadId
+    KERNEL32.dll      269 000081E2 GetLastError
+    KERNEL32.dll      27D 000081F2 GetModuleHandleA
+    KERNEL32.dll      2B6 00008206 GetProcAddress
+    KERNEL32.dll      2F3 00008218 GetSystemTimeAsFileTime
+    KERNEL32.dll      312 00008232 GetTickCount
+    KERNEL32.dll      36D 00008242 InitializeCriticalSection
+    KERNEL32.dll      3CD 0000825E LeaveCriticalSection
+    KERNEL32.dll      3D1 00008276 LoadLibraryA
+    KERNEL32.dll      45E 00008286 QueryPerformanceCounter
+    KERNEL32.dll      55A 000082A0 SetUnhandledExceptionFilter
+    KERNEL32.dll      56A 000082BE Sleep
+    KERNEL32.dll      579 000082C6 TerminateProcess
+    KERNEL32.dll      58D 000082DA TlsGetValue
+    KERNEL32.dll      59B 000082E8 UnhandledExceptionFilter
+    KERNEL32.dll      5BD 00008304 VirtualProtect
+    KERNEL32.dll      5C0 00008316 VirtualQuery
+      msvcrt.dll       90 00008326 _amsg_exit
+      msvcrt.dll      160 00008334 _initterm
+      msvcrt.dll      164 00008340 _iob
+      msvcrt.dll      1D1 00008348 _lock
+      msvcrt.dll      34A 00008350 _unlock
+      msvcrt.dll      421 0000835A abort
+      msvcrt.dll      42F 00008362 calloc
+      msvcrt.dll      452 0000836C free
+      msvcrt.dll      45E 00008374 fwrite
+      msvcrt.dll      4A8 0000837E realloc
+      msvcrt.dll      4C3 00008388 strlen
+      msvcrt.dll      4C6 00008392 strncmp
+      msvcrt.dll      4E7 0000839C vfprintf
+
+## Exports ##
+  Characteristics: 0x00000000 (0)
+  TimeDateStamp: 0x5E82F681 (Tue Mar 31 07:51:29 2020)
+  MajorVersion: 0x0000 (0)
+  MinorVersion: 0x0000 (0)
+  Name: 0x00007044 (28740)
+  Base: 0x00000002 (2)
+  NumberOfFunctions: 0x00000004 (4)
+  NumberOfNames: 0x00000002 (2)
+  AddressOfFunctions: 0x00007028 (28712)
+  AddressOfNames: 0x00007038 (28728)
+  AddressOfNameOrdinals: 0x00007040 (28736)
+    ordinal hint RVA      name
+          3    0          Baz (forwarded to user32.MessageBoxA)
+          2    1 000014F0 Foo
+          5      000014FD [NONAME]
+
