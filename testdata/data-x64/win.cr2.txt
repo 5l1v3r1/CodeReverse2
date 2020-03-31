@@ -68,15 +68,16 @@
   NumberOfRvaAndSizes: 0x00000010 (16)
 
   ## Directory Entries ##
-    IMAGE_DIRECTORY_ENTRY_IMPORT (1): VirtualAddress: 0x00008000, Size: 0x000007A0 (1952)
-    IMAGE_DIRECTORY_ENTRY_RESOURCE (2): VirtualAddress: 0x0000B000, Size: 0x000004E8 (1256)
-    IMAGE_DIRECTORY_ENTRY_EXCEPTION (3): VirtualAddress: 0x00005000, Size: 0x00000264 (612)
-    IMAGE_DIRECTORY_ENTRY_TLS (9): VirtualAddress: 0x00004060, Size: 0x00000028 (40)
-    IMAGE_DIRECTORY_ENTRY_IAT (12): VirtualAddress: 0x000081F0, Size: 0x000001A0 (416)
+    IMAGE_DIRECTORY_ENTRY_IMPORT (1): address 0x00008000, size 0x000007A0 (1952)
+    IMAGE_DIRECTORY_ENTRY_RESOURCE (2): address 0x0000B000, size 0x000004E8 (1256)
+    IMAGE_DIRECTORY_ENTRY_EXCEPTION (3): address 0x00005000, size 0x00000264 (612)
+    IMAGE_DIRECTORY_ENTRY_TLS (9): address 0x00004060, size 0x00000028 (40)
+    IMAGE_DIRECTORY_ENTRY_IAT (12): address 0x000081F0, size 0x000001A0 (416)
+
 ## Section Header #0 ##
   Name: .text
   VirtualSize: 0x00001D78 (7544)
-  VirtualAddress: 0x00001000 (RVA, not a virtual address)
+  VirtualAddress: 0x00001000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00001E00 (7680)
   PointerToRawData: 0x00000600
   PointerToRelocations: 0x00000000
@@ -88,7 +89,7 @@
 ## Section Header #1 ##
   Name: .data
   VirtualSize: 0x000000D0 (208)
-  VirtualAddress: 0x00003000 (RVA, not a virtual address)
+  VirtualAddress: 0x00003000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000200 (512)
   PointerToRawData: 0x00002400
   PointerToRelocations: 0x00000000
@@ -100,7 +101,7 @@
 ## Section Header #2 ##
   Name: .rdata
   VirtualSize: 0x00000B00 (2816)
-  VirtualAddress: 0x00004000 (RVA, not a virtual address)
+  VirtualAddress: 0x00004000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000C00 (3072)
   PointerToRawData: 0x00002600
   PointerToRelocations: 0x00000000
@@ -112,7 +113,7 @@
 ## Section Header #3 ##
   Name: .pdata
   VirtualSize: 0x00000264 (612)
-  VirtualAddress: 0x00005000 (RVA, not a virtual address)
+  VirtualAddress: 0x00005000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000400 (1024)
   PointerToRawData: 0x00003200
   PointerToRelocations: 0x00000000
@@ -124,7 +125,7 @@
 ## Section Header #4 ##
   Name: .xdata
   VirtualSize: 0x000001F0 (496)
-  VirtualAddress: 0x00006000 (RVA, not a virtual address)
+  VirtualAddress: 0x00006000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000200 (512)
   PointerToRawData: 0x00003600
   PointerToRelocations: 0x00000000
@@ -136,7 +137,7 @@
 ## Section Header #5 ##
   Name: .bss
   VirtualSize: 0x00000980 (2432)
-  VirtualAddress: 0x00007000 (RVA, not a virtual address)
+  VirtualAddress: 0x00007000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000000 (0)
   PointerToRawData: 0x00000000
   PointerToRelocations: 0x00000000
@@ -148,7 +149,7 @@
 ## Section Header #6 ##
   Name: .idata
   VirtualSize: 0x000007A0 (1952)
-  VirtualAddress: 0x00008000 (RVA, not a virtual address)
+  VirtualAddress: 0x00008000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000800 (2048)
   PointerToRawData: 0x00003800
   PointerToRelocations: 0x00000000
@@ -160,7 +161,7 @@
 ## Section Header #7 ##
   Name: .CRT
   VirtualSize: 0x00000068 (104)
-  VirtualAddress: 0x00009000 (RVA, not a virtual address)
+  VirtualAddress: 0x00009000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000200 (512)
   PointerToRawData: 0x00004000
   PointerToRelocations: 0x00000000
@@ -172,7 +173,7 @@
 ## Section Header #8 ##
   Name: .tls
   VirtualSize: 0x00000010 (16)
-  VirtualAddress: 0x0000A000 (RVA, not a virtual address)
+  VirtualAddress: 0x0000A000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000200 (512)
   PointerToRawData: 0x00004200
   PointerToRelocations: 0x00000000
@@ -184,7 +185,7 @@
 ## Section Header #9 ##
   Name: .rsrc
   VirtualSize: 0x000004E8 (1256)
-  VirtualAddress: 0x0000B000 (RVA, not a virtual address)
+  VirtualAddress: 0x0000B000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000600 (1536)
   PointerToRawData: 0x00004400
   PointerToRelocations: 0x00000000
@@ -196,7 +197,7 @@
 ## Section Header #10 ##
   Name: /4
   VirtualSize: 0x00000480 (1152)
-  VirtualAddress: 0x0000C000 (RVA, not a virtual address)
+  VirtualAddress: 0x0000C000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000600 (1536)
   PointerToRawData: 0x00004A00
   PointerToRelocations: 0x00000000
@@ -208,7 +209,7 @@
 ## Section Header #11 ##
   Name: /19
   VirtualSize: 0x0003BCE6 (244966)
-  VirtualAddress: 0x0000D000 (RVA, not a virtual address)
+  VirtualAddress: 0x0000D000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x0003BE00 (245248)
   PointerToRawData: 0x00005000
   PointerToRelocations: 0x00000000
@@ -220,7 +221,7 @@
 ## Section Header #12 ##
   Name: /31
   VirtualSize: 0x0000272A (10026)
-  VirtualAddress: 0x00049000 (RVA, not a virtual address)
+  VirtualAddress: 0x00049000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00002800 (10240)
   PointerToRawData: 0x00040E00
   PointerToRelocations: 0x00000000
@@ -232,7 +233,7 @@
 ## Section Header #13 ##
   Name: /45
   VirtualSize: 0x000036DE (14046)
-  VirtualAddress: 0x0004C000 (RVA, not a virtual address)
+  VirtualAddress: 0x0004C000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00003800 (14336)
   PointerToRawData: 0x00043600
   PointerToRelocations: 0x00000000
@@ -244,7 +245,7 @@
 ## Section Header #14 ##
   Name: /57
   VirtualSize: 0x00000A28 (2600)
-  VirtualAddress: 0x00050000 (RVA, not a virtual address)
+  VirtualAddress: 0x00050000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000C00 (3072)
   PointerToRawData: 0x00046E00
   PointerToRelocations: 0x00000000
@@ -256,7 +257,7 @@
 ## Section Header #15 ##
   Name: /70
   VirtualSize: 0x0000073B (1851)
-  VirtualAddress: 0x00051000 (RVA, not a virtual address)
+  VirtualAddress: 0x00051000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000800 (2048)
   PointerToRawData: 0x00047A00
   PointerToRelocations: 0x00000000
@@ -268,7 +269,7 @@
 ## Section Header #16 ##
   Name: /81
   VirtualSize: 0x00003070 (12400)
-  VirtualAddress: 0x00052000 (RVA, not a virtual address)
+  VirtualAddress: 0x00052000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00003200 (12800)
   PointerToRawData: 0x00048200
   PointerToRelocations: 0x00000000
@@ -280,7 +281,7 @@
 ## Section Header #17 ##
   Name: /92
   VirtualSize: 0x000004F0 (1264)
-  VirtualAddress: 0x00056000 (RVA, not a virtual address)
+  VirtualAddress: 0x00056000 (RVA, not absolute virtual address)
   SizeOfRawData: 0x00000600 (1536)
   PointerToRawData: 0x0004B400
   PointerToRelocations: 0x00000000
@@ -294,55 +295,56 @@
   TimeDateStamp: 0x00000000 ((null))
   Name: 0x00008714 (34580)
   FirstThunk: 0x000081F0 (33264)
-          Module     hint      RVA Function
-    KERNEL32.dll      11B 00008390 DeleteCriticalSection
-    KERNEL32.dll      13F 000083A8 EnterCriticalSection
-    KERNEL32.dll      228 000083C0 GetCurrentProcess
-    KERNEL32.dll      229 000083D4 GetCurrentProcessId
-    KERNEL32.dll      22D 000083EA GetCurrentThreadId
-    KERNEL32.dll      276 00008400 GetLastError
-    KERNEL32.dll      2E7 00008410 GetStartupInfoA
-    KERNEL32.dll      301 00008422 GetSystemTimeAsFileTime
-    KERNEL32.dll      31F 0000843C GetTickCount
-    KERNEL32.dll      37C 0000844C InitializeCriticalSection
-    KERNEL32.dll      3D8 00008468 LeaveCriticalSection
-    KERNEL32.dll      46B 00008480 QueryPerformanceCounter
-    KERNEL32.dll      4C6 0000849A RtlAddFunctionTable
-    KERNEL32.dll      4C7 000084B0 RtlCaptureContext
-    KERNEL32.dll      4CE 000084C4 RtlLookupFunctionEntry
-    KERNEL32.dll      4D5 000084DE RtlVirtualUnwind
-    KERNEL32.dll      572 000084F2 SetUnhandledExceptionFilter
-    KERNEL32.dll      582 00008510 Sleep
-    KERNEL32.dll      591 00008518 TerminateProcess
-    KERNEL32.dll      5A5 0000852C TlsGetValue
-    KERNEL32.dll      5B3 0000853A UnhandledExceptionFilter
-    KERNEL32.dll      5D4 00008556 VirtualProtect
-    KERNEL32.dll      5D6 00008568 VirtualQuery
-    KERNEL32.dll      633 00008578 __C_specific_handler
-      msvcrt.dll       52 00008590 __getmainargs
-      msvcrt.dll       53 000085A0 __initenv
-      msvcrt.dll       54 000085AC __iob_func
-      msvcrt.dll       5B 000085BA __lconv_init
-      msvcrt.dll       61 000085CA __set_app_type
-      msvcrt.dll       63 000085DC __setusermatherr
-      msvcrt.dll       73 000085F0 _acmdln
-      msvcrt.dll       7B 000085FA _amsg_exit
-      msvcrt.dll       8D 00008608 _cexit
-      msvcrt.dll       FE 00008612 _fmode
-      msvcrt.dll      14D 0000861C _initterm
-      msvcrt.dll      266 00008628 _onexit
-      msvcrt.dll      40B 00008632 abort
-      msvcrt.dll      41E 0000863A calloc
-      msvcrt.dll      42B 00008644 exit
-      msvcrt.dll      43F 0000864C fprintf
-      msvcrt.dll      446 00008656 free
-      msvcrt.dll      451 0000865E fwrite
-      msvcrt.dll      480 00008668 malloc
-      msvcrt.dll      488 00008672 memcpy
-      msvcrt.dll      4A6 0000867C signal
-      msvcrt.dll      4BB 00008686 strlen
-      msvcrt.dll      4BE 00008690 strncmp
-      msvcrt.dll      4DE 0000869A vfprintf
-      USER32.dll      265 000086A6 MessageBoxA
+          Module     hint              RVA Function
+    KERNEL32.dll      11B 0000000000008390 DeleteCriticalSection
+    KERNEL32.dll      13F 00000000000083A8 EnterCriticalSection
+    KERNEL32.dll      228 00000000000083C0 GetCurrentProcess
+    KERNEL32.dll      229 00000000000083D4 GetCurrentProcessId
+    KERNEL32.dll      22D 00000000000083EA GetCurrentThreadId
+    KERNEL32.dll      276 0000000000008400 GetLastError
+    KERNEL32.dll      2E7 0000000000008410 GetStartupInfoA
+    KERNEL32.dll      301 0000000000008422 GetSystemTimeAsFileTime
+    KERNEL32.dll      31F 000000000000843C GetTickCount
+    KERNEL32.dll      37C 000000000000844C InitializeCriticalSection
+    KERNEL32.dll      3D8 0000000000008468 LeaveCriticalSection
+    KERNEL32.dll      46B 0000000000008480 QueryPerformanceCounter
+    KERNEL32.dll      4C6 000000000000849A RtlAddFunctionTable
+    KERNEL32.dll      4C7 00000000000084B0 RtlCaptureContext
+    KERNEL32.dll      4CE 00000000000084C4 RtlLookupFunctionEntry
+    KERNEL32.dll      4D5 00000000000084DE RtlVirtualUnwind
+    KERNEL32.dll      572 00000000000084F2 SetUnhandledExceptionFilter
+    KERNEL32.dll      582 0000000000008510 Sleep
+    KERNEL32.dll      591 0000000000008518 TerminateProcess
+    KERNEL32.dll      5A5 000000000000852C TlsGetValue
+    KERNEL32.dll      5B3 000000000000853A UnhandledExceptionFilter
+    KERNEL32.dll      5D4 0000000000008556 VirtualProtect
+    KERNEL32.dll      5D6 0000000000008568 VirtualQuery
+    KERNEL32.dll      633 0000000000008578 __C_specific_handler
+      msvcrt.dll       52 0000000000008590 __getmainargs
+      msvcrt.dll       53 00000000000085A0 __initenv
+      msvcrt.dll       54 00000000000085AC __iob_func
+      msvcrt.dll       5B 00000000000085BA __lconv_init
+      msvcrt.dll       61 00000000000085CA __set_app_type
+      msvcrt.dll       63 00000000000085DC __setusermatherr
+      msvcrt.dll       73 00000000000085F0 _acmdln
+      msvcrt.dll       7B 00000000000085FA _amsg_exit
+      msvcrt.dll       8D 0000000000008608 _cexit
+      msvcrt.dll       FE 0000000000008612 _fmode
+      msvcrt.dll      14D 000000000000861C _initterm
+      msvcrt.dll      266 0000000000008628 _onexit
+      msvcrt.dll      40B 0000000000008632 abort
+      msvcrt.dll      41E 000000000000863A calloc
+      msvcrt.dll      42B 0000000000008644 exit
+      msvcrt.dll      43F 000000000000864C fprintf
+      msvcrt.dll      446 0000000000008656 free
+      msvcrt.dll      451 000000000000865E fwrite
+      msvcrt.dll      480 0000000000008668 malloc
+      msvcrt.dll      488 0000000000008672 memcpy
+      msvcrt.dll      4A6 000000000000867C signal
+      msvcrt.dll      4BB 0000000000008686 strlen
+      msvcrt.dll      4BE 0000000000008690 strncmp
+      msvcrt.dll      4DE 000000000000869A vfprintf
+      USER32.dll      265 00000000000086A6 MessageBoxA
 
 No exports.
+No delays.
