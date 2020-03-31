@@ -26,17 +26,17 @@ public:
     virtual bool load(FILE *fp);
     virtual void unload();
 
-          void *file_map(uint32_t rva = 0, uint32_t size = 1);
-    const void *file_map(uint32_t rva = 0, uint32_t size = 1) const;
+          void *file_map(uint64_t rva = 0, uint32_t size = 1);
+    const void *file_map(uint64_t rva = 0, uint32_t size = 1) const;
     uint64_t reverse_file_map(const void *ptr) const;
 
     template <typename T>
-    T *file_map_typed(uint32_t rva = 0)
+    T *file_map_typed(uint64_t rva = 0)
     {
         return reinterpret_cast<T *>(file_map(rva, sizeof(T)));
     }
     template <typename T>
-    const T *file_map_typed(uint32_t rva = 0) const
+    const T *file_map_typed(uint64_t rva = 0) const
     {
         return reinterpret_cast<const T *>(file_map(rva, sizeof(T)));
     }

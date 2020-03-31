@@ -23,7 +23,7 @@ typedef bool (*IMPORT_PROC64)(const IMAGE_IMPORT_DESCRIPTOR *pImports,
 struct ImportEntry
 {
     std::string module;
-    uint32_t rva;
+    uint64_t rva;
     std::string func_name;
     int ordinal;
     int hint;
@@ -34,13 +34,13 @@ typedef std::vector<ImportEntry> ImportTable;
 // Exports
 
 typedef bool (*EXPORT_PROC)(const IMAGE_EXPORT_DIRECTORY *pExports,
-    const char *name, uint32_t rva, int ordinal, int hint, const char *forwarded_to,
+    const char *name, uint64_t rva, int ordinal, int hint, const char *forwarded_to,
     void *user_data);
 
 struct ExportEntry
 {
     std::string name;
-    uint32_t rva;
+    uint64_t rva;
     int ordinal;
     int hint;
     std::string forwarded_to;
@@ -60,8 +60,8 @@ typedef bool (*DELAY_PROC64)(const char *module, uint32_t hmod,
 struct DelayEntry
 {
     std::string module;
-    uint32_t hmodule;
-    uint32_t rva;
+    uint64_t hmodule;
+    uint64_t rva;
     std::string func_name;
     int ordinal;
     int hint;

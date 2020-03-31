@@ -234,7 +234,7 @@ std::string string_of_data_directory(const void *data, uint32_t index)
     default: name = "(Reserved Directory Entry)"; break;
     }
 
-    return string_formatted("    %s (%u): VirtualAddress: 0x%08X, Size: 0x%08X (%u)\n",
+    return string_formatted("    %s (%u): address 0x%08X, size 0x%08X (%u)\n",
                             name, index, dir->VirtualAddress, dir->Size, dir->Size);
 }
 
@@ -417,7 +417,7 @@ std::string string_of_section_header(const void *section_header, uint32_t index)
     ret += "\n";
 
     ret += string_formatted("  VirtualSize: 0x%08X (%u)\n", sh->Misc.VirtualSize, sh->Misc.VirtualSize);
-    ret += string_formatted("  VirtualAddress: 0x%08X (RVA, not a virtual address)\n", sh->VirtualAddress);
+    ret += string_formatted("  VirtualAddress: 0x%08X (RVA, not absolute virtual address)\n", sh->VirtualAddress);
     ret += string_formatted("  SizeOfRawData: 0x%08X (%u)\n", sh->SizeOfRawData, sh->SizeOfRawData);
     ret += string_formatted("  PointerToRawData: 0x%08X\n", sh->PointerToRawData);
     ret += string_formatted("  PointerToRelocations: 0x%08X\n", sh->PointerToRelocations);
@@ -602,7 +602,7 @@ std::string string_of_hex_dump64(const void *memory, size_t size, uint64_t base_
     return ret;
 }
 
-std::string string_of_imports(const IMAGE_IMPORT_DESCRIPTOR *imports, const ImportTable& table)
+std::string string_of_imports(const IMAGE_IMPORT_DESCRIPTOR *imports, const ImportTable& table, bool is_64bit)
 {
     std::string ret;
 
@@ -612,7 +612,10 @@ std::string string_of_imports(const IMAGE_IMPORT_DESCRIPTOR *imports, const Impo
     ret += string_formatted("  TimeDateStamp: 0x%08X (%s)\n", imports->TimeDateStamp, string_of_timestamp(imports->TimeDateStamp).c_str());
     ret += string_formatted("  Name: 0x%08X (%u)\n", imports->Name, imports->Name);
     ret += string_formatted("  FirstThunk: 0x%08X (%u)\n", imports->FirstThunk, imports->FirstThunk);
-    ret += string_formatted("  %14s %8s %8s %s\n", "Module", "hint", "RVA", "Function");
+    if (is_64bit)
+        ret += string_formatted("  %14s %8s %16s %s\n", "Module", "hint", "RVA", "Function");
+    else
+        ret += string_formatted("  %14s %8s %8s %s\n", "Module", "hint", "RVA", "Function");
     for (auto& entry : table)
     {
         std::string hint;
@@ -620,22 +623,54 @@ std::string string_of_imports(const IMAGE_IMPORT_DESCRIPTOR *imports, const Impo
         {
             if (entry.hint != -1)
                 hint = string_formatted("%8X", entry.hint);
-            ret += string_formatted("%16s %8s %08X %s\n",
-                entry.module.c_str(),
-                hint.c_str(),
-                entry.rva,
-                entry.func_name.c_str());
+            if (is_64bit)
+            {
+#ifdef _WIN32
+                ret += string_formatted("%16s %8s %016I64X %s\n",
+#else
+                ret += string_formatted("%16s %8s %016llX %s\n",
+#endif
+                    entry.module.c_str(),
+                    hint.c_str(),
+                    entry.rva,
+                    entry.func_name.c_str());
+            }
+            else
+            {
+                ret += string_formatted("%16s %8s %08X %s\n",
+                    entry.module.c_str(),
+                    hint.c_str(),
+                    static_cast<uint32_t>(entry.rva),
+                    entry.func_name.c_str());
+            }
         }
         else
         {
             std::string name = string_formatted("Ordinal %6d", entry.ordinal);
-            if (entry.hint != -1)
-                hint = string_formatted("%8X", entry.hint);
-            ret += string_formatted("%16s %8s %08X %s\n",
-                entry.module.c_str(),
-                hint.c_str(),
-                entry.rva,
-                name.c_str());
+            if (is_64bit)
+            {
+                if (entry.hint != -1)
+                    hint = string_formatted("%8X", entry.hint);
+#ifdef _WIN32
+                ret += string_formatted("%16s %8s %016I64X %s\n",
+#else
+                ret += string_formatted("%16s %8s %016llX %s\n",
+#endif
+                    entry.module.c_str(),
+                    hint.c_str(),
+                    entry.rva,
+                    name.c_str());
+            }
+            else
+            {
+                if (entry.hint != -1)
+                    hint = string_formatted("%8X", entry.hint);
+                ret += string_formatted("%16s %8s %08X %s\n",
+                    entry.module.c_str(),
+                    hint.c_str(),
+                    static_cast<uint32_t>(entry.rva),
+                    name.c_str());
+            }
         }
     }
 
@@ -643,7 +678,7 @@ std::string string_of_imports(const IMAGE_IMPORT_DESCRIPTOR *imports, const Impo
     return ret;
 }
 
-std::string string_of_exports(const IMAGE_EXPORT_DIRECTORY *exports, const ExportTable& table)
+std::string string_of_exports(const IMAGE_EXPORT_DIRECTORY *exports, const ExportTable& table, bool is_64bit)
 {
     std::string ret;
 
@@ -661,7 +696,10 @@ std::string string_of_exports(const IMAGE_EXPORT_DIRECTORY *exports, const Expor
     ret += string_formatted("  AddressOfNames: 0x%08X (%u)\n", exports->AddressOfNames, exports->AddressOfNames);
     ret += string_formatted("  AddressOfNameOrdinals: 0x%08X (%u)\n", exports->AddressOfNameOrdinals, exports->AddressOfNameOrdinals);
 
-    ret += "    ordinal hint RVA      name\n";
+    if (is_64bit)
+        ret += string_formatted("%11s %4s %16s %s\n", "ordinal", "hint", "RVA", "name");
+    else
+        ret += string_formatted("%11s %4s %8s %s\n", "ordinal", "hint", "RVA", "name");
     for (auto& entry : table)
     {
         auto name = entry.name;
@@ -672,12 +710,30 @@ std::string string_of_exports(const IMAGE_EXPORT_DIRECTORY *exports, const Expor
         if (entry.hint == -1)
             hint = "";
 
-        auto rva = string_formatted("%08X", entry.rva);
+        std::string rva;
+        if (is_64bit)
+        {
+#ifdef _WIN32
+            rva = string_formatted("%016I64X", entry.rva);
+#else
+            rva = string_formatted("%016llX", entry.rva);
+#endif
+        }
+        else
+            rva = string_formatted("%08X", entry.rva);
         if (entry.forwarded_to[0])
             rva = "";
 
-        ret += string_formatted("%11d %4s %8s %s",
-            entry.ordinal, hint.c_str(), rva.c_str(), name.c_str());
+        if (is_64bit)
+        {
+            ret += string_formatted("%11d %4s %16s %s",
+                entry.ordinal, hint.c_str(), rva.c_str(), name.c_str());
+        }
+        else
+        {
+            ret += string_formatted("%11d %4s %8s %s",
+                entry.ordinal, hint.c_str(), rva.c_str(), name.c_str());
+        }
 
         if (entry.forwarded_to[0])
         {
@@ -690,12 +746,15 @@ std::string string_of_exports(const IMAGE_EXPORT_DIRECTORY *exports, const Expor
     return ret;
 }
 
-std::string string_of_delay(const DelayTable& table)
+std::string string_of_delay(const DelayTable& table, bool is_64bit)
 {
     std::string ret;
 
     ret += "## Delay ##\n";
-    ret += string_formatted("  %14s %8s %8s %8s %s\n", "Module", "HMODULE", "hint", "RVA", "Function");
+    if (is_64bit)
+        ret += string_formatted("  %14s %8s %8s %16s %s\n", "Module", "HMODULE", "hint", "RVA", "Function");
+    else
+        ret += string_formatted("  %14s %8s %8s %8s %s\n", "Module", "HMODULE", "hint", "RVA", "Function");
 
     for (auto& entry : table)
     {
@@ -704,24 +763,56 @@ std::string string_of_delay(const DelayTable& table)
         {
             if (entry.hint != -1)
                 hint = string_formatted("%8X", entry.hint);
-            ret += string_formatted("%16s %08X %8s %08X %s\n",
-                entry.module.c_str(),
-                entry.hmodule,
-                hint.c_str(),
-                entry.rva,
-                entry.func_name.c_str());
+            if (is_64bit)
+            {
+#ifdef _WIN32
+                ret += string_formatted("%16s %016I64X %8s %016I64X %s\n",
+#else
+                ret += string_formatted("%16s %016llX %8s %016llX %s\n",
+#endif
+                    entry.module.c_str(),
+                    entry.hmodule,
+                    hint.c_str(),
+                    entry.rva,
+                    entry.func_name.c_str());
+            }
+            else
+            {
+                ret += string_formatted("%16s %08X %8s %08X %s\n",
+                    entry.module.c_str(),
+                    entry.hmodule,
+                    hint.c_str(),
+                    static_cast<uint32_t>(entry.rva),
+                    entry.func_name.c_str());
+            }
         }
         else
         {
             std::string name = string_formatted("Ordinal %6d", entry.ordinal);
             if (entry.hint != -1)
                 hint = string_formatted("%8X", entry.hint);
-            ret += string_formatted("%16s %08X %8s %08X %s\n",
-                entry.module.c_str(),
-                entry.hmodule,
-                hint.c_str(),
-                entry.rva,
-                name.c_str());
+            if (is_64bit)
+            {
+#ifdef _WIN32
+                ret += string_formatted("%16s %016I64X %8s %016I64X %s\n",
+#else
+                ret += string_formatted("%16s %016llX %8s %016llX %s\n",
+#endif
+                    entry.module.c_str(),
+                    entry.hmodule,
+                    hint.c_str(),
+                    entry.rva,
+                    name.c_str());
+            }
+            else
+            {
+                ret += string_formatted("%16s %08X %8s %08X %s\n",
+                    entry.module.c_str(),
+                    entry.hmodule,
+                    hint.c_str(),
+                    static_cast<uint32_t>(entry.rva),
+                    name.c_str());
+            }
         }
     }
     ret += "\n";

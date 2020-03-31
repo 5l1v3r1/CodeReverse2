@@ -214,7 +214,7 @@ uint32_t PEModule::base_of_code() const
     return 0;
 }
 
-uint32_t PEModule::rva_of_entry_point() const
+uint64_t PEModule::rva_of_entry_point() const
 {
     assert(is_loaded());
     if (is_64bit())
@@ -242,7 +242,7 @@ bool PEModule::is_valid_ava(uint64_t ava) const
     return 0;
 }
 
-uint64_t PEModule::ava_from_rva(uint32_t rva) const
+uint64_t PEModule::ava_from_rva(uint64_t rva) const
 {
     assert(is_loaded());
     if (is_64bit())
@@ -256,16 +256,16 @@ uint64_t PEModule::ava_from_rva(uint32_t rva) const
     return 0;
 }
 
-uint32_t PEModule::rva_from_ava(uint64_t ava) const
+uint64_t PEModule::rva_from_ava(uint64_t ava) const
 {
     assert(is_loaded());
     if (is_64bit())
     {
-        return uint32_t(ava - impl()->optional64->ImageBase);
+        return ava - impl()->optional64->ImageBase;
     }
     else if (is_32bit())
     {
-        return uint32_t(ava - impl()->optional32->ImageBase);
+        return ava - impl()->optional32->ImageBase;
     }
     return 0;
 }
@@ -315,7 +315,7 @@ bool PEModule::get_binary(const std::string& group_name, std::string& binary) co
     return Module::get_binary(group_name, binary);
 }
 
-PIMAGE_SECTION_HEADER PEModule::section_from_rva(uint32_t rva) const
+PIMAGE_SECTION_HEADER PEModule::section_from_rva(uint64_t rva) const
 {
     assert(is_loaded());
 
@@ -336,23 +336,22 @@ PIMAGE_SECTION_HEADER PEModule::section_from_rva(uint32_t rva) const
     return NULL;
 }
 
-void *PEModule::pointer_from_rva(uint32_t rva)
+void *PEModule::pointer_from_rva(uint64_t rva)
 {
     assert(is_loaded());
-    return image_map_typed<BYTE>() + rva;
+    return image_map_typed<BYTE>() + static_cast<uintptr_t>(rva);
 }
 
-const void *PEModule::pointer_from_rva(uint32_t rva) const
+const void *PEModule::pointer_from_rva(uint64_t rva) const
 {
     assert(is_loaded());
-    return image_map_typed<BYTE>() + rva;
+    return image_map_typed<BYTE>() + static_cast<uintptr_t>(rva);
 }
 
-uint32_t PEModule::rva_from_pointer(const void *pointer) const
+uint64_t PEModule::rva_from_pointer(const void *pointer) const
 {
     assert(is_loaded());
-    return static_cast<uint32_t>(
-        reinterpret_cast<const char *>(pointer) - image_map_typed<char>());
+    return reinterpret_cast<const char *>(pointer) - image_map_typed<char>();
 }
 
 void *PEModule::data_from_dir(uint16_t iDir, size_t *pSize)
@@ -421,7 +420,7 @@ bool PEModule::_map_image()
     return true;
 }
 
-void *PEModule::image_map(uint32_t rva, uint32_t size)
+void *PEModule::image_map(uint64_t rva, uint32_t size)
 {
     if (impl()->image.size() < rva + size)
         return NULL;
@@ -429,7 +428,7 @@ void *PEModule::image_map(uint32_t rva, uint32_t size)
     return ptr + rva;
 }
 
-const void *PEModule::image_map(uint32_t rva, uint32_t size) const
+const void *PEModule::image_map(uint64_t rva, uint32_t size) const
 {
     if (impl()->image.size() < rva + size)
         return NULL;
@@ -558,7 +557,7 @@ do_load_import_table_proc64(const IMAGE_IMPORT_DESCRIPTOR *pImports,
     ImportTable *table = load->table;
 
     auto module = this_->ptr_from_rva<char>(pImports->Name);
-    auto rva = static_cast<uint32_t>(pIAT->u1.Function);
+    auto rva = pIAT->u1.Function;
 
     if (IMAGE_SNAP_BY_ORDINAL64(pINT->u1.Ordinal))
     {
@@ -672,7 +671,7 @@ bool PEModule::enum_export_items(EXPORT_PROC callback, void *user_data) const
 
 static bool
 do_load_export_table_proc(const IMAGE_EXPORT_DIRECTORY *pExports,
-                          const char *name, uint32_t rva,
+                          const char *name, uint64_t rva,
                           int ordinal, int hint, const char *forwarded_to,
                           void *user_data)
 {
@@ -800,7 +799,7 @@ bool do_load_delay_proc64(const char *module, uint32_t hModule,
     const PEModule *this_ = load->this_;
     DelayTable *table = load->table;
 
-    auto rva = static_cast<uint32_t>(pIAT->u1.Function);
+    auto rva = pIAT->u1.Function;
 
     if (IMAGE_SNAP_BY_ORDINAL64(pINT->u1.Ordinal))
     {
@@ -883,7 +882,7 @@ std::string PEModule::dump(const std::string& name) const
         ImportTable table;
         if (load_import_table(table))
         {
-            return string_of_imports(get_imports(), table);
+            return string_of_imports(get_imports(), table, is_64bit());
         }
         else
         {
@@ -895,7 +894,7 @@ std::string PEModule::dump(const std::string& name) const
         ExportTable table;
         if (load_export_table(table))
         {
-            return string_of_exports(get_exports(), table);
+            return string_of_exports(get_exports(), table, is_64bit());
         }
         else
         {
@@ -907,7 +906,7 @@ std::string PEModule::dump(const std::string& name) const
         DelayTable table;
         if (load_delay_table(table))
         {
-            return string_of_delay(table);
+            return string_of_delay(table, is_64bit());
         }
         else
         {

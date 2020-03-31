@@ -27,16 +27,16 @@ public:
     virtual bool load(FILE *fp);
     virtual void unload();
 
-          void *image_map(uint32_t rva = 0, uint32_t size = 1);
-    const void *image_map(uint32_t rva = 0, uint32_t size = 1) const;
+          void *image_map(uint64_t rva = 0, uint32_t size = 1);
+    const void *image_map(uint64_t rva = 0, uint32_t size = 1) const;
 
     template <typename T>
-    T *image_map_typed(uint32_t rva = 0)
+    T *image_map_typed(uint64_t rva = 0)
     {
         return reinterpret_cast<T *>(image_map(rva, sizeof(T)));
     }
     template <typename T>
-    const T *image_map_typed(uint32_t rva = 0) const
+    const T *image_map_typed(uint64_t rva = 0) const
     {
         return reinterpret_cast<const T *>(image_map(rva, sizeof(T)));
     }
@@ -54,31 +54,31 @@ public:
 
     // NOTE: AVA is absolute virtual address.
     bool is_valid_ava(uint64_t ava) const;
-    uint64_t ava_from_rva(uint32_t rva) const;
-    uint32_t rva_from_ava(uint64_t ava) const;
+    uint64_t ava_from_rva(uint64_t rva) const;
+    uint64_t rva_from_ava(uint64_t ava) const;
 
-          void *pointer_from_rva(uint32_t rva);
-    const void *pointer_from_rva(uint32_t rva) const;
-    uint32_t rva_from_pointer(const void *pointer) const;
+          void *pointer_from_rva(uint64_t rva);
+    const void *pointer_from_rva(uint64_t rva) const;
+    uint64_t rva_from_pointer(const void *pointer) const;
 
     template <typename T>
-    T *ptr_from_rva(uint32_t rva)
+    T *ptr_from_rva(uint64_t rva)
     {
         return reinterpret_cast<T *>(pointer_from_rva(rva));
     }
     template <typename T>
-    const T *ptr_from_rva(uint32_t rva) const
+    const T *ptr_from_rva(uint64_t rva) const
     {
         return reinterpret_cast<const T *>(pointer_from_rva(rva));
     }
 
-    PIMAGE_SECTION_HEADER section_from_rva(uint32_t rva) const;
+    PIMAGE_SECTION_HEADER section_from_rva(uint64_t rva) const;
     const IMAGE_SECTION_HEADER *get_section_header(int iSection) const;
 
     uint32_t size_of_headers() const;
     uint32_t size_of_image() const;
     uint32_t base_of_code() const;
-    uint32_t rva_of_entry_point() const;
+    uint64_t rva_of_entry_point() const;
 
     virtual bool get_binary(const std::string& group_name, std::string& binary) const;
 

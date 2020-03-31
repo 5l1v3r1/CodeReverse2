@@ -84,20 +84,20 @@ bool Module::load(FILE *fp)
     return true;
 }
 
-void *Module::file_map(uint32_t rva, uint32_t size)
+void *Module::file_map(uint64_t rva, uint32_t size)
 {
     if (m_pimpl->binary.empty() || rva + size > m_pimpl->binary.size())
         return NULL;
 
-    return &m_pimpl->binary[rva];
+    return &m_pimpl->binary[static_cast<uintptr_t>(rva)];
 }
 
-const void *Module::file_map(uint32_t rva, uint32_t size) const
+const void *Module::file_map(uint64_t rva, uint32_t size) const
 {
     if (m_pimpl->binary.empty() || rva + size > m_pimpl->binary.size())
         return NULL;
 
-    return &m_pimpl->binary[rva];
+    return &m_pimpl->binary[static_cast<uintptr_t>(rva)];
 }
 
 uint64_t Module::reverse_file_map(const void *ptr) const
