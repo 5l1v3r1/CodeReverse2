@@ -540,7 +540,8 @@ do_load_import_table_proc32(const IMAGE_IMPORT_DESCRIPTOR *pImports,
     else
     {
         auto pName = this_->ptr_from_rva<IMAGE_IMPORT_BY_NAME>(pINT->u1.AddressOfData);
-        ImportEntry entry = { module, rva, pName->Name, -1, pName->Hint };
+        auto name = reinterpret_cast<const char *>(pName->Name);
+        ImportEntry entry = { module, rva, name, -1, pName->Hint };
         table->push_back(entry);
     }
 
@@ -568,7 +569,8 @@ do_load_import_table_proc64(const IMAGE_IMPORT_DESCRIPTOR *pImports,
     else
     {
         auto pName = this_->ptr_from_rva<IMAGE_IMPORT_BY_NAME>(pINT->u1.AddressOfData);
-        ImportEntry entry = { module, rva, pName->Name, 0, pName->Hint };
+        auto name = reinterpret_cast<const char *>(pName->Name);
+        ImportEntry entry = { module, rva, name, 0, pName->Hint };
         table->push_back(entry);
     }
 
@@ -784,7 +786,8 @@ bool do_load_delay_proc32(const char *module, uint32_t hModule,
     else
     {
         auto pName = this_->ptr_from_rva<IMAGE_IMPORT_BY_NAME>(pINT->u1.AddressOfData);
-        DelayEntry entry = { module, hModule, rva, pName->Name, -1, pName->Hint };
+        auto name = reinterpret_cast<const char *>(pName->Name);
+        DelayEntry entry = { module, hModule, rva, name, -1, pName->Hint };
         table->push_back(entry);
     }
 
@@ -810,7 +813,8 @@ bool do_load_delay_proc64(const char *module, uint32_t hModule,
     else
     {
         auto pName = this_->ptr_from_rva<IMAGE_IMPORT_BY_NAME>(pINT->u1.AddressOfData);
-        DelayEntry entry = { module, hModule, rva, pName->Name, -1, pName->Hint };
+        auto name = reinterpret_cast<const char *>(pName->Name);
+        DelayEntry entry = { module, hModule, rva, name, -1, pName->Hint };
         table->push_back(entry);
     }
 
