@@ -2,7 +2,6 @@
 
 #include "Module.h"
 #include "ports.h"
-#include "won32.h"
 
 namespace cr2
 {

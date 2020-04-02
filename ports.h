@@ -2,7 +2,12 @@
 
 #include <cstdint>
 #include <vector>
-#include "won32.h"
+#ifdef _WIN32
+    #include <windows.h>
+    #include <delayimp.h>
+#else
+    #include "won32.h"
+#endif
 
 namespace cr2
 {
